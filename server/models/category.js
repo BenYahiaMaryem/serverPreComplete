@@ -2,8 +2,6 @@
 const mongoose = require('mongoose')
 mongoose.Promise = Promise
 
-// mongoose.createConnection('mongodb://maryem:root@ds135820.mlab.com:35820/bookstore')
-mongoose.connect('mongodb://localhost:27017/data')
 // const validator = require('validator')
 const Schema = mongoose.Schema
 

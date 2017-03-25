@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/*import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -13,4 +13,4 @@ export class CategoriesService {
             .map(res => res.json());
     }
 
-}
+}*/

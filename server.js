@@ -3,9 +3,20 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
+const mongoose=require('mongoose');
+mongoose.Promise = Promise
+mongoose.connect('mongodb://localhost:27017/data')
+const book = require('./server/models/book')
+/*
+const client = require('./server/models/client')
+const categorie = require('./server/models/category')
+*/
+
+
 
 // Get our API routes
-const api = require('./server/routes/category');
+//const api = require('./server/routes/');
+
 
 const app = express();
 
@@ -17,17 +28,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // Set our api routes
-app.use('/api', api);
-
+//app.use('/api', api);
+app.use('/api',require('./server/routes/book'))
+/*app.use('/api',require('./server/routes/clients'))
+app.use('/api',require('./server/routes/category'))*/
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 /**
  * Get port from environment and store in Express.
  */
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || '3003';
 app.set('port', port);
 
 /**
