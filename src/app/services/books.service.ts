@@ -11,6 +11,13 @@ getAllBooks(){
             .map(res => res.json());
 
 }
+getData(books): Promise<any> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(books);
+      }, 2000);
+    });
+  }
 
 
 getBookById(_id){
