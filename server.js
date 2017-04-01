@@ -7,9 +7,10 @@ const mongoose=require('mongoose')
 mongoose.Promise = Promise
 mongoose.connect('mongodb://localhost:27017/data')
 const book = require('./server/models/book')
+const categorie = require('./server/models/category')
+
 /*
 const client = require('./server/models/client')
-const categorie = require('./server/models/category')
 */
 
 
@@ -30,8 +31,8 @@ app.use(express.static(path.join(__dirname, 'dist')))
 // Set our api routes
 //app.use('/api', api)
 app.use('/api',require('./server/routes/book'))
-/*app.use('/api',require('./server/routes/clients'))
-app.use('/api',require('./server/routes/category'))*/
+/*app.use('/api',require('./server/routes/clients'))*/
+app.use('/api',require('./server/routes/category'))
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'))

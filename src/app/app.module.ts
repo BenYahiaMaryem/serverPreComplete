@@ -1,3 +1,4 @@
+import { CategoriesService } from './services/categories.service';
 import { CatalogComponent } from './store/catalog/catalog.component';
 import { AdminComponent } from './admin/admin.component';
 import { StoreComponent } from './store/store.component';
@@ -67,6 +68,7 @@ const ROUTES = [
   ],
   providers: [
         BooksService,
+        CategoriesService,
         {provide: APP_BASE_HREF, useValue: '/' }
     ],
   bootstrap: [AppComponent]
