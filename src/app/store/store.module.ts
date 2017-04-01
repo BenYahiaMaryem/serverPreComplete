@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { CatalogComponent } from './catalog/catalog.component'
+import { CatalogComponent } from './catalog/catalog.component';
+import { FooterComponent } from './footer/footer.component'
 
 const ROUTES = [
     {
@@ -19,11 +20,13 @@ const ROUTES = [
   ],
   declarations: [
     CatalogComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   exports: [
     CatalogComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class StoreModule { }

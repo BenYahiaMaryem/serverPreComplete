@@ -1,5 +1,7 @@
+import { BooksComponent } from './books-admin/books.component';
 import { Component } from '@angular/core';
-
+import { FooterComponent } from './footer/footer.component';
+import { AdminHeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'admin-root',

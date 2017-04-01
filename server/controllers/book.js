@@ -1,5 +1,5 @@
 'use strict'
-let Book=require('../models/book');
+let Book = require('../models/book');
 
 const bodyParser = require('body-parser');
 
