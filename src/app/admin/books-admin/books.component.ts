@@ -1,7 +1,7 @@
 import { Component, SimpleChange} from '@angular/core';
 import { NgForm } from "@angular/forms";
 //smart table imports 
-import { Ng2SmartTableModule, LocalDataSource, Grid } from 'ng2-smart-table';
+import { Ng2SmartTableModule, LocalDataSource, Grid, InputFilterComponent } from 'ng2-smart-table';
 
 import {BooksService} from '../../services/books.service';
 
@@ -12,8 +12,10 @@ import {BooksService} from '../../services/books.service';
 })
 export class BooksComponent  {
     grid: Grid
+    
 
     books :any=[]
+    categories : any[]
     settings = {
     columns: {
         _id: {
@@ -70,6 +72,7 @@ export class BooksComponent  {
 
     }
     source: LocalDataSource = new LocalDataSource()
+    sourceCategories:LocalDataSource = new LocalDataSource()
 
     constructor(private booksService: BooksService) {  
         this.booksService.getAllBooks().subscribe(books => {

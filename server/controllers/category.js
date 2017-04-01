@@ -41,7 +41,7 @@ getCategory: (req, res) => {
         if(err) {
             response = {"error" : true, "message" : "Error fetching data"};
         } else {
-            response = {"error" : false, "message" : category};
+            response =category;
 }
     res.json(response);
 })
