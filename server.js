@@ -5,17 +5,19 @@ const http = require('http')
 const bodyParser = require('body-parser')
 const mongoose=require('mongoose')
 mongoose.Promise = Promise
-mongoose.connect('mongodb://localhost:27017/data')
+
+
+//mongoose.connect('mongodb://localhost:27017/data2')
+const autoIncrement = require('mongoose-auto-increment');
+const connection= mongoose.connect('mongodb://localhost:27017/data2')
+autoIncrement.initialize(connection)
+
+//import models
 const book = require('./server/models/book')
-/*
-const client = require('./server/models/client')
 const categorie = require('./server/models/category')
-*/
+const client = require('./server/models/client')
+const cart = require('./server/models/cart')
 
-
-
-// Get our API routes
-//const api = require('./server/routes/')
 
 
 const app = express()
@@ -30,8 +32,9 @@ app.use(express.static(path.join(__dirname, 'dist')))
 // Set our api routes
 //app.use('/api', api)
 app.use('/api',require('./server/routes/book'))
-/*app.use('/api',require('./server/routes/clients'))
-app.use('/api',require('./server/routes/category'))*/
+app.use('/api',require('./server/routes/client'))
+app.use('/api',require('./server/routes/category'))
+app.use('/api',require('./server/routes/cart'))
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'))

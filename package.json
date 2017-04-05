@@ -31,6 +31,8 @@
     "express-fileupload": "^0.1.2",
     "hammerjs": "^2.0.8",
     "jquery": "^3.2.1",
+    "mongoose": "^4.9.3",
+    "mongoose-auto-increment": "^5.0.1",
     "multer": "^1.3.0",
     "ng2-bootstrap": "^1.4.2",
     "ng2-smart-table": "^0.6.0-1",

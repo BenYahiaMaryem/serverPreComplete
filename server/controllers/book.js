@@ -7,7 +7,10 @@ module.exports={
 
 getAllBooks:(req, res) => {
         var response = {}
-        Book.find({ isDeleted: 0}, (err, data) => {
+        Book
+            .find({ isDeleted: 0})
+            .populate('category')
+            .exec ((err, data) => {
             // Mongo command to fetch all data from collection.
             if(err) {
                 response = {"error" : true, "message" : "Error fetching data"};
@@ -35,7 +38,7 @@ getAllBooks:(req, res) => {
     FindBookByName:(req,res)=> {
         var response = {}
         //we specifie the interval of price by req 
-        Book.aggregate({$match: { name: { $lte: 200 }}}, (err, data) => {
+        Book.findOne({name: req.params.name}, (err, data)=> {
           
             if(err) {
                 response = {"error" : true, "message" : "Error fetching data"};
@@ -85,7 +88,7 @@ Book.findOne({_id: req.params._id}, (err, book) => {
 deleteBook:(req,res)=>{
    
 var response={};
-    Book.findOneAndUpdate({_id: req.params._id }, req.body,(err,book) =>{
+    Book.findOneAndUpdate({name: req.params.name }, req.body,(err,book) =>{
         
        if (err) return res.status(400).json(err);
    
@@ -99,7 +102,7 @@ var response={};
 ,
 updateBook: (req, res, next) => {
     var response={};
-    Book.findOneAndUpdate({ _id: req.params._id }, req.body, function(err, book) {
+    Book.findOneAndUpdate({ name: req.params.name }, req.body, function(err, book) {
       if (err) return res.status(400).json(err);
    
       

@@ -1,5 +1,7 @@
 'use strict'
 const mongoose = require('mongoose')
+const autoIncrement = require('mongoose-auto-increment');
+
 //var db=mongoose.connection;
 //const validator = require('validator')
 // mongoose.connect('mongodb://localhost:27017/data')
@@ -8,11 +10,7 @@ mongoose.Promise = Promise
 const Schema = mongoose.Schema
 
 const bookSchema = Schema({
-  _id: {
-    type: Number,
-    required: true
 
-  },
   name: {
     type: String,
     required: true,
@@ -52,10 +50,10 @@ const bookSchema = Schema({
     type: Number,
     ref: 'Command'
   }],
-  category: [{
+  category: {
     type: Number,
     ref: 'Category'
-  }],
+  },
   carts: [{
     type: Number,
     ref: 'Cart'
@@ -98,6 +96,7 @@ const bookSchema = Schema({
 //   }
 // }
 
+bookSchema.plugin(autoIncrement.plugin, 'Book');
 const Book = mongoose.model('Book', bookSchema)
 
 // User.schema.path('email').validate(function (email) {

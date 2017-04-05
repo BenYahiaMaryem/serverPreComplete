@@ -1,21 +1,31 @@
-import { Component, SimpleChange} from '@angular/core';
+import { Component, SimpleChange, OnInit,DoCheck } from '@angular/core';
 import { NgForm } from "@angular/forms";
 //smart table imports 
-import { Ng2SmartTableModule, LocalDataSource, Grid, InputFilterComponent } from 'ng2-smart-table';
 
 import {BooksService} from '../../services/books.service';
 
+import { Ng2SmartTableModule, ServerDataSource, Grid } from 'ng2-smart-table';
+import { Http } from '@angular/http';
+
+
+
+import { CategoriesService } from './../../services/categories.service';
 
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html'
 })
-export class BooksComponent  {
+export class BooksComponent {
     grid: Grid
     
 
+
     books :any=[]
     categories : any[]
+
+
+    categoriesBinded: any = []
+
     settings = {
     columns: {
         _id: {
@@ -41,15 +51,44 @@ export class BooksComponent  {
         },
         image: {
         title: 'Image'  
-        }
+        },
+        categories: {
+         title: 'categories',
+         type:'html',
+         /*valuePrepareFunction:(cell,row)=>{
+             //`<a title="See Detail Product "href="Your api key or something/${row.Id}"> <i class="ion-edit"></i></a>`
+            return `<select>
+              <option   *ngFor="let category of categories">{{ category.name }}</option>
+
+            </select>`
+         }*/
+         filter: {
+            type: 'list',
+            config: {
+                selectText: 'Select...',
+                list: this.categoriesBinded
+            },
+         },
+       }
     },
     actions: {
         add: true,
         edit: true,
         delete: true
     },
+   /* Actions: //or something
+  {
+    title:'Detail',
+    type:'html',
+    valuePrepareFunction:(cell,row)=>{
+      return `<a title="See Detail Product "href="Your api key or something/${row.Id}"> <i class="ion-edit"></i></a>`
+    },
+    filter:false       
+  },
+  */
     add: {
         confirmCreate: true
+
     },
      delete: {
         confirmDelete: true
@@ -68,18 +107,77 @@ export class BooksComponent  {
         description : ' description',
         edition : 'edition',
         image: 'Insert Image Here',
-        isDeleted : 0
+        isDeleted : 0,
+        category: []
 
     }
-    source: LocalDataSource = new LocalDataSource()
-    sourceCategories:LocalDataSource = new LocalDataSource()
 
-    constructor(private booksService: BooksService) {  
+    
+
+ 
+
+    
+    
+    /*constructor(private booksService: BooksService, private categoriesService: CategoriesService) {  
+
         this.booksService.getAllBooks().subscribe(books => {
                 this.books = books
                 this.source.load(books)
+        })
+                this.categoriesService.getAllCategories().subscribe(categories => {
+                    this.categories = categories
+                    this.sourceCatgories.load(categories)
+
                 })
+                                    console.log(this.sourceCatgories)
+
+        
+    }*/
+  
+    /////////// from stackoverflow
+            getCategories() {
+            return this.categoriesService.getAllCategories()
+            .do(data => {
+            this.categories = data;
+            })
+            .do(() => {
+                /*this.bindCategories()
+                console.log(this.categoriesBinded)  // prints the data */
+                //this.settings.columns.categories.filter.config.list = this.bindCategories()
+                for(let i = 0; i < this.categories.length; i++) {
+            //console.log(this.categories[i])
+            let cat={
+                value :this.categories[i]._id,
+                title:this.categories[i].name,
+            }
+                this.categoriesBinded.push(cat);
+                }
+            })
+            /*.do((data) => {
+                console.log(data)
+            })*/
+            .catch(error => { 
+                console.log(error);
+                throw error;
+            })
         }
+     /*   getCategories(): any {
+        this.categoriesService.getAllCategories().subscribe(categories => {
+                this.categories = categories
+                return this.bindCategories(this.categories)
+        })
+    }*/
+    constructor(http: Http, private booksService: BooksService, private categoriesService: CategoriesService){
+       // this.source = new ServerDataSource(http, { endPoint: 'http://localhost:3003/api/books' })
+       // this.sourceCategories = new ServerDataSource(http, { endPoint: 'http://localhost:3003/api/categories' })
+        //console.log(this.source)
+        //this.source.getAll
+      /* this.getCategories().subscribe(categories => {
+                this.categories = categories})
+       /*.subscribe(data => {
+        console.log(this.categories)
+        })*/
+    }
     addBook(newData){
             let book = this.book
             book = newData
@@ -136,7 +234,7 @@ export class BooksComponent  {
        this.books=this.booksService.getAllBooks().subscribe(books => {
                 this.books = books
                 
-        this.source.load(this.books)
+      // this.source.load(this.books)
     })
     }
 
@@ -145,7 +243,7 @@ export class BooksComponent  {
         this.books=this.booksService.getAllBooks().subscribe(books => {
                 this.books = books
                 
-        this.source.load(this.books)
+       // this.source.load(this.books)
     })
         
     }
@@ -154,5 +252,23 @@ export class BooksComponent  {
        console.log(event)
        this.removeBook(+event.data._id) 
     }
- 
-}
+
+    
+    bindCategories() : any{
+        for(let i = 0; i < this.categories.length; i++) {
+            console.log(this.categories[i])
+            this.categoriesBinded[i] = {
+                value : +this.categories[i]._id,
+                title : this.categories[i].name
+            }
+            console.log(this.categoriesBinded[i])
+           // this.categoriesBinded[i].value = +this.categories._id
+           // this.categoriesBinded[i].title = this.categories.name
+        }
+        //console.log(this.categoriesBinded)
+        //console.log(this.sourceCatgories)
+        //return this.categoriesBinded
+    }
+
+    }
+

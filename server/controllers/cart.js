@@ -1,14 +1,14 @@
 'use strict'
-let category = require('../models/category')
+let cart = require('../models/cart')
 const bodyParser = require('body-parser')
 
 module.exports = {
 
-        // fetch all categories
-        getCategories: (req, res) => {
+        // fetch all carts
+        getCarts: (req, res) => {
         var response = {}
-        category.find({})
-        .populate('books')
+        cart.find({})
+       // .populate('command')
         .exec((err, data) => {
         // Mongo command to fetch all data from collection.
         if(err) {
@@ -19,10 +19,10 @@ module.exports = {
 res.json(response);
 })
 },
-getCategoryByName:(req,res)=> {
+getCartByDate:(req,res)=> {
         var response = {}
-        //we specifie the interval of price by req 
-       category.findOne({name: req.params.name}, (err, data)=> {
+         
+       cart.findOne({name: req.params.name}, (err, data)=> {
           
             if(err) {
                 response = {"error" : true, "message" : "Error fetching data"};
@@ -32,9 +32,9 @@ getCategoryByName:(req,res)=> {
             res.json(response);
         })
     },
-// insert a category
-addCategory: (req, res) => {
-    let db = new category(req.body);
+// insert a client
+addCart: (req, res) => {
+    let db = new cart(req.body);
     var response = {};
     db.save(function(err){
         // save() will run insert() command of MongoDB.
@@ -47,43 +47,46 @@ addCategory: (req, res) => {
         res.json(response);
     });
 },
-// fetch a category by id
-getCategory: (req, res) => {
+
+// fetch a client by id
+getCartById: (req, res) => {
     var response = {}
-    category.findOne({_id: req.params._id}, (err, category) => {
+    cart.findOne({_id: req.params._id}, (err, cart) => {
         // Mongo command to fetch all data from collection.
         if(err) {
             response = {"error" : true, "message" : "Error fetching data"};
         } else {
 
-            response =category;
+            response =cart;
 
 }
     res.json(response);
 })
 },
-updateCategory: (req, res) => {
+
+updateCart: (req, res) => {
 var response={};
-   category.findOneAndUpdate({ name: req.params.name }, req.body, function(err, category) {
+   cart.findOneAndUpdate({ date: req.params.date}, req.body, function(err, cart) {
       if (err) return res.status(400).json(err);
    
       
              else {
-                response =category;
+                response =cart;
             }
             res.json(response);
         });
   
 
 },
-deleteCategory: (req, res) => {
+
+deleteCart: (req, res) => {
 var response={};
-   category.findOneAndUpdate({ name: req.params.name }, req.body, function(err, category) {
+   cart.findOneAndUpdate({ date: req.params.date }, req.body, function(err, cart) {
       if (err) return res.status(400).json(err);
    
       
              else {
-                response =category;
+                response =cart;
             }
             res.json(response);
         });

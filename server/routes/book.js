@@ -10,8 +10,9 @@ const books=require('../controllers/book')
 
 router.get('/books',books.getAllBooks)
 .post('/books',books.createBook)
-.get('/books/:_id',books.findBookById)
-.put('/books/:_id/delete',books.deleteBook)
-.put('/books/:_id/update',books.updateBook)
+.get('/books/:_id/book',books.findBookById)
+.get('/books/:name',books.FindBookByName)
+.put('/books/:name/delete',books.deleteBook)
+.put('/books/:name/update',books.updateBook)
 // export router
 module.exports = router
