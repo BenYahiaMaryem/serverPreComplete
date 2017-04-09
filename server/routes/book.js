@@ -12,6 +12,8 @@ router.get('/books',books.getAllBooks)
 .post('/books',books.createBook)
 .get('/books/:_id/book',books.findBookById)
 .get('/books/:name',books.FindBookByName)
+//.get('/books/:name/:category',books.FindBookByNameOrCategoryOrAuthorOrPriceOrEditionOrEditionDate)
+.post('/books/advancedSearch',books.FindBookByNameOrCategoryOrAuthorOrPriceOrEditionOrEditionDate)
 .put('/books/:name/delete',books.deleteBook)
 .put('/books/:name/update',books.updateBook)
 // export router

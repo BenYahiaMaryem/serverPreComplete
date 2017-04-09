@@ -1,0 +1,106 @@
+<!--<div class="ui container">
+
+  <h2 class="ui header">Attached Content</h2>
+  <div class="ui three column grid">
+    <div class="column">
+      <div class="top attached ui segment">
+        Name
+        <div class="ui input">
+            <input type="text" placeholder="Search By Name">
+        </div>
+      </div>
+      <div class="attached ui segment">
+        
+          <div class="field">
+    Category
+   <select class="ui fluid dropdown" >
+       <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+    </select>
+   
+      
+    </div>
+      </div>
+      <div class="attached ui segment">
+        Author
+        <div class="ui input">
+            <input type="text" placeholder="Search By Name">
+        </div>
+      </div>
+      <div class="bottom attached ui segment">
+       Price
+      </div>
+     
+
+        
+        
+    </div>
+   
+   
+  </div>
+</div>-->
+<!--<form #f="ngForm" novalidate>
+
+<div>
+    <label>Category</label>
+    <select name="category" [(ngModel)]="book.categories">
+        <option *ngFor="let category of categories" [value]="category.id">  
+        {{category.name}}
+        </option>
+    </select>
+</div>
+    <button type="submit" (click)="save(f.value, f.valid)">Submit</button>
+</form>-->
+
+
+<form class="ui form" #f="ngForm" novalidate>
+  <h4 class="ui dividing header">Research</h4>
+  <div class="field">
+    <label>Book Name</label>
+    
+      <div class="field">
+        <input type="text" name="name" [(ngModel)]=book.name placeholder="Book Name">
+      </div>
+      
+    
+  </div>
+  
+  <div class="field">
+    <label>Author Name</label>
+    
+      <div class="field">
+        <input type="text" name="author" [(ngModel)]=book.author placeholder="Author Name">
+      </div>
+      
+    
+  </div>
+
+  <div class="field">
+    <label>Edition Name</label>
+    
+      <div class="field">
+        <input type="text" name="edition" [(ngModel)]=book.edition placeholder="Edition Name">
+      </div>      
+  </div>
+
+  <div class="field">
+    <label>Edition Date</label>
+    
+      <div class="field">
+        <input type="text" name="editionDate" [(ngModel)]=book.editionDate placeholder="Edition Date">
+      </div>      
+  </div>
+    <div class="field">
+      <label>Category</label>
+    <select name="category" [(ngModel)]="book.category">
+        <option *ngFor="let category of categories" [value]="category._id">  
+        {{category.name}}
+        </option>
+    </select>
+      
+       
+    </div>
+  <div class="ui button" tabindex="0">
+  <button type="submit" (click)="save(f.value, f.valid, book)">Submit</button>
+  </div>
+</form>
+ 

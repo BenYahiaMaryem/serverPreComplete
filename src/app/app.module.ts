@@ -41,7 +41,8 @@ const ROUTES = [
     },*/
     {
         path: 'store',
-        loadChildren: './store/store.module#StoreModule'
+        loadChildren: './store/store.module#StoreModule',
+        //component:StoreComponent
     },
     {
         path: 'admin',

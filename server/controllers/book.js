@@ -21,10 +21,41 @@ getAllBooks:(req, res) => {
         })
     },
   
+
+  
+  FindBookByNameOrCategoryOrAuthorOrPriceOrEditionOrEditionDate:(req, res) => {
+        var response = {}
+        
+        Book
+            .find({ isDeleted: 0,
+                $or: [
+                  { category: req.body.category}, 
+                  {name: new RegExp(req.body.name)},
+                  {author: req.body.author}, 
+                  {edition: req.body.edition},
+                  {editionDate:req.body.editionDate}, 
+                  {price : req.body.price}
+                ]
+            })
+            .populate('category')
+            .exec ((err, data) => {
+            // Mongo command to fetch all data from collection.
+            if(err) {
+                response = {"error" : true, "message" : err};
+            } else {
+                response = data;
+            }
+            res.json(response);
+        })
+  },
+
+
   FindBookByPrice:(req,res)=> {
         var response = {}
-        //we specifie the interval of price by req 
-        Book.aggregate({$match: { price:{ $gt: 70, $lt: 90 }}}, (err, data) => {
+        //we specifie the interval of price by req
+      
+        Book.find({ isDeleted: 0})
+        aggregate({$match: { price:{ $gt: 70, $lt: 90 }}}, (err, data) => {
           
             if(err) {
                 response = {"error" : true, "message" : "Error fetching data"};
