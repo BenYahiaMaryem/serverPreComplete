@@ -33,14 +33,14 @@ book:any = {
 
   ngOnInit() {
 
-      this.book = {
-        name: '',
-        author : '',
-        editionDate: '',
-        edition: '',
+       this.book = {
+        name: null,
+        author : null,
+        editionDate: null,
+        edition: null,
         //price: this.book.price,
         categories: this.categories,
-        category: this.book.category 
+        category : null
         
         
     }

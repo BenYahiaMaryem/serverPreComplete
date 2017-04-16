@@ -23,7 +23,7 @@ getAllBooks:(req, res) => {
   
 
   
-  FindBookByNameOrCategoryOrAuthorOrPriceOrEditionOrEditionDate:(req, res) => {
+  FindBookRapidSearch:(req, res) => {
         var response = {}
         
         Book
@@ -48,6 +48,47 @@ getAllBooks:(req, res) => {
             res.json(response);
         })
   },
+
+  
+    FindBookByNameOrCategoryOrAuthorOrPriceOrEditionOrEditionDate: (req, res) => {
+        var response = {}
+        let query = {isDeleted:0}
+        if (req.body.name) {
+            query.name = req.body.name
+        }
+        if (req.body.author) {
+            query.author = req.body.author
+        }
+        if (req.body.editonDate) {
+            query.editonDate = req.body.editonDate
+        }
+        if (req.body.editon) {
+            query.editon = req.body.editon
+        }
+        if (req.body.category) {
+            query.category = +req.body.category
+        }
+        console.log(query)
+
+
+        Book.find(query,function  (err, data) {
+                
+                // Mongo command to fetch all data from collection.
+                if(err) {
+                    response = { "error": true, "message": err };
+                } else {
+                    response = data;
+                    // console.log(req.body.attr)
+                             }
+               
+            res.json(response);
+            
+            }
+              
+                
+            )       
+     
+},
 
 
   FindBookByPrice:(req,res)=> {

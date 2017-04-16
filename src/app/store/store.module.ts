@@ -7,6 +7,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { FooterComponent } from './footer/footer.component';
 import { ResearchComponent } from './research/research.component';
 import { FormsModule } from '@angular/forms';
+import { RapidSearchComponent } from './rapid-search/rapid-search.component';
 
 const ROUTES = [
     {
@@ -17,7 +18,13 @@ const ROUTES = [
      {
         path: 'research', 
         component: ResearchComponent
+    },
+    
+    {
+        path: 'rapidSearch', 
+        component: RapidSearchComponent
     }
+
 
 ]
 
@@ -31,13 +38,15 @@ const ROUTES = [
     CatalogComponent,
     HeaderComponent,
     FooterComponent,
-    ResearchComponent
+    ResearchComponent,
+    RapidSearchComponent
   ],
   exports: [
     CatalogComponent,
     HeaderComponent,
     FooterComponent,
-    ResearchComponent
+    ResearchComponent,
+     RapidSearchComponent
   ]
 })
 export class StoreModule { }
