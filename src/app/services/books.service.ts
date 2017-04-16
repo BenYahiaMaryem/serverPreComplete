@@ -19,6 +19,12 @@ getBookAdvancedSearch(book){
   return this.http.post('/api/books/advancedSearch', JSON.stringify(book),{ headers: headers })
             .map(res => res.json());
 }
+getBookRapidSearch(book){
+  var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+  return this.http.post('/api/books/rapidSearch', JSON.stringify(book),{ headers: headers })
+            .map(res => res.json());
+}
 getData(books): Promise<any> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
