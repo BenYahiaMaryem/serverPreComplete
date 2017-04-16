@@ -1,3 +1,17 @@
 <p>
   rapid-search works!
 </p>
+<form class="ui form" #f="ngForm" novalidate>
+  <h4 class="ui dividing header">Research</h4>
+  <div class="field">
+    <label>Rapid Search</label>
+    
+      <div class="field">
+        <input type="text" name="attr" [(ngModel)]=book.attr placeholder="rapid-search">
+      </div>
+       </div>
+<div class="ui button" tabindex="0">
+  <button type="submit" (click)="save(f.value, f.valid,book)">Submit</button>
+  </div>
+ 
+</form>     
