@@ -3,7 +3,6 @@ import { CatalogComponent } from './store/catalog/catalog.component';
 import { AdminComponent } from './admin/admin.component';
 import { StoreComponent } from './store/store.component';
 import { Component } from '@angular/core';
-import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
 // Imports commented out for brevity
@@ -62,7 +61,6 @@ const ROUTES = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),// Add routes to the app
-    MaterialModule,
     StoreModule,
     AdminModule
     
