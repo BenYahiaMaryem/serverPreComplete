@@ -12,6 +12,7 @@ export class CatalogComponent implements OnInit {
 
  books: any = []
   cart = {
+    _id:0,
     isDeleted: 0,
     books: []
   }

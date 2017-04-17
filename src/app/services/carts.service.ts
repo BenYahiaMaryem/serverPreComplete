@@ -14,7 +14,7 @@ getAllCarts(){
 addCart(cart){
   var headers = new Headers();
   headers.append('Content-Type', 'application/json');
-  return this.http.post("/api/carts", JSON.stringify(cart), { headers: headers }) .map(response => response.json());
+  return this.http.put("/api/carts/"+cart._id, JSON.stringify(cart), { headers: headers }) .map(response => response.json());
 }
 
 

@@ -8,7 +8,7 @@ module.exports = {
   getCarts: (req, res) => {
     var response = {}
     cart.find({})
-       // .populate('command')
+        .populate('books')
         .exec((err, data) => {
         // Mongo command to fetch all data from collection.
           if (err) {
@@ -31,17 +31,14 @@ module.exports = {
       res.json(response)
     })
   },
-// insert a client
-  addCart: (req, res) => {
-    let db = new cart(req.body)
+// insert a ccart
+  addBookToCart: (req, res) => {
     var response = {}
-    db.save(function (err) {
-        // save() will run insert() command of MongoDB.
-        // it will add new data in collection.
-      if (err) {
-        return res.send(err)
-      } else {
-        response = {'error': false, 'message': 'Data added'}
+   cart.findOneAndUpdate({ _id: req.params._id }, req.body, function (err, cart) {
+      if (err) return res.status(400).json(err)
+
+      else {
+        response =cart
       }
       res.json(response)
     })
