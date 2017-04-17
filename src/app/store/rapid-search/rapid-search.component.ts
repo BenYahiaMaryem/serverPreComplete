@@ -23,7 +23,7 @@ book:any = {
     }
   }
 
-   public save(isValid: boolean, f: any,book:any) {
+  /* public save(isValid: boolean, f: any,book:any) {
         if(f)
         {
           console.log(book)
@@ -33,6 +33,6 @@ book:any = {
           })
         }
     }
-
+*/
 
 }

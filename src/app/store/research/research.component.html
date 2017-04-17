@@ -100,7 +100,9 @@
        
     </div>
   <div class="ui button" tabindex="0">
-  <button type="submit" (click)="save(f.value, f.valid, book)">Submit</button>
+  <button type="submit" (click)="c.getBookAdvancedSearch(book)">Submit</button>
+   
   </div>
+   <app-catalog #c></app-catalog>
 </form>
  

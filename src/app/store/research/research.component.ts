@@ -48,7 +48,7 @@ export class ResearchComponent implements OnInit {
     }
   }
 
-  public save(isValid: boolean, f: any, book: any) {
+/*  public save(isValid: boolean, f: any, book: any) {
     if (f) {
       console.log(book)
       this.bookService.getBookAdvancedSearch(book).subscribe(books => {
@@ -57,5 +57,5 @@ export class ResearchComponent implements OnInit {
       //this.catalog.getBookAdvancedSearch(book)
     }
   }
-
+*/
 }

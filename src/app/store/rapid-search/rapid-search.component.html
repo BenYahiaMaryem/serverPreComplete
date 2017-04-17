@@ -1,6 +1,4 @@
-<p>
-  rapid-search works!
-</p>
+<app-header></app-header>
 <form class="ui form" #f="ngForm" novalidate>
   <h4 class="ui dividing header">Research</h4>
   <div class="field">
@@ -11,7 +9,11 @@
       </div>
        </div>
 <div class="ui button" tabindex="0">
-  <button type="submit" (click)="save(f.value, f.valid,book)">Submit</button>
+  <!--button type="submit" (click)="save(f.value, f.valid,book)">Submit</button-->
+<button type="submit" (click)="c.getBookRapidSearch(book)">Submit</button>
+   
   </div>
+   <app-catalog #c></app-catalog>
+</form>
  
-</form>     
+   <app-footer></app-footer>
