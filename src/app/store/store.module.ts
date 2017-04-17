@@ -11,6 +11,14 @@ import { RapidSearchComponent } from './rapid-search/rapid-search.component';
 
 const ROUTES = [
     {
+        path: 'header', 
+        component: HeaderComponent
+    },
+    {
+        path: 'footer', 
+        component: FooterComponent
+    },
+    {
         path: 'catalog', 
         component: CatalogComponent
     },
@@ -46,7 +54,10 @@ const ROUTES = [
     HeaderComponent,
     FooterComponent,
     ResearchComponent,
-     RapidSearchComponent
+    RapidSearchComponent
+  ],
+  providers: [
+      CatalogComponent
   ]
 })
 export class StoreModule { }

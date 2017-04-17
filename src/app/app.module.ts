@@ -1,7 +1,4 @@
-import { CategoriesService } from './services/categories.service';
-import { CatalogComponent } from './store/catalog/catalog.component';
-import { AdminComponent } from './admin/admin.component';
-import { StoreComponent } from './store/store.component';
+
 import { Component } from '@angular/core';
 import 'hammerjs';
 
@@ -18,6 +15,12 @@ import { AppComponent } from './app.component';
 /*import { CategoriesComponent } from './categories/categories.component';
 import { CategoriesService } from './categories.service';*/
 import { BooksService } from './services/books.service';
+import { CartsService } from './services/carts.service';
+import { CategoriesService } from './services/categories.service';
+
+import { AdminComponent } from './admin/admin.component';
+import { StoreComponent } from './store/store.component';
+
 import { StoreModule } from './store/store.module';
 
 import { AdminModule } from './admin/admin.module'
@@ -41,7 +44,7 @@ const ROUTES = [
     {
         path: 'store',
         loadChildren: './store/store.module#StoreModule',
-        //component:StoreComponent
+        component:StoreComponent
     },
     {
         path: 'admin',
@@ -68,6 +71,7 @@ const ROUTES = [
   providers: [
         BooksService,
         CategoriesService,
+        CartsService,
         {provide: APP_BASE_HREF, useValue: '/' }
     ],
   bootstrap: [AppComponent]

@@ -1,11 +1,11 @@
 'use strict'
 const mongoose = require('mongoose')
-const autoIncrement = require('mongoose-auto-increment');
-//const validator = require('validator')
+const autoIncrement = require('mongoose-auto-increment')
+// const validator = require('validator')
 const Schema = mongoose.Schema
 
 var clientSchema = Schema({
- 
+
   name: {
     type: String,
     required: true
@@ -31,10 +31,10 @@ var clientSchema = Schema({
 
 })
 
-clientSchema.plugin(autoIncrement.plugin, 'Client');
+clientSchema.plugin(autoIncrement.plugin, 'Client')
 var Client = mongoose.model('Client', clientSchema)
 
-/*Client.schema.path('email').validate(function (email) {
+/* Client.schema.path('email').validate(function (email) {
   return validator.isEmail(email)
 })
 
@@ -43,5 +43,5 @@ Client.schema.path('password').validate(function (password) {
 })
 Client.schema.path('tel').validate(function (tel) {
   return validator.isLength(tel, 8)
-})*/
+}) */
 module.exports = Client

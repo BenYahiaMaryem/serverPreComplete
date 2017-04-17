@@ -1,7 +1,7 @@
 'use strict'
 const mongoose = require('mongoose')
 
-const autoIncrement = require('mongoose-auto-increment');
+const autoIncrement = require('mongoose-auto-increment')
 mongoose.Promise = Promise
 
 const Schema = mongoose.Schema
@@ -24,6 +24,6 @@ const cartSchema = Schema({
   }]
 
 })
-cartSchema.plugin(autoIncrement.plugin, 'Cart');
+cartSchema.plugin(autoIncrement.plugin, 'Cart')
 const Cart = mongoose.model('Cart', cartSchema)
 module.exports = Cart

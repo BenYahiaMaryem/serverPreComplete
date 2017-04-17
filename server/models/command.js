@@ -1,10 +1,8 @@
 'use strict'
 const mongoose = require('mongoose')
-const autoIncrement = require('mongoose-auto-increment');
-//const validator = require('validator')
+const autoIncrement = require('mongoose-auto-increment')
+// const validator = require('validator')
 const Schema = mongoose.Schema
-
-
 
 const commandSchema = Schema({
   _id: {
@@ -26,6 +24,7 @@ const commandSchema = Schema({
     ref: 'Client'
   }]
 })
-commandSchema.plugin(autoIncrement.plugin, 'Command');
+// add total price, totalQte,
+commandSchema.plugin(autoIncrement.plugin, 'Command')
 var Command = mongoose.model('Command', commandSchema)
 module.exports = Command

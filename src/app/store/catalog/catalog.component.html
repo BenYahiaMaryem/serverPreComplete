@@ -36,8 +36,14 @@
         {{book.price}}
       </span>
       <span>
-        <i class="user icon"></i>
-        151 Friends
+        <div class="ui vertical animated button" tabindex="0">
+          <div (click)="addToCart(book)" class="hidden content">
+            Shop
+          </div>
+          <div class="visible content">
+            <i class="shop icon"></i>
+          </div>
+        </div>
       </span>
     </div>
     </div>

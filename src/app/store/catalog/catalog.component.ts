@@ -1,6 +1,8 @@
+import { ResearchComponent } from './../research/research.component';
 import { Component, OnInit } from '@angular/core';
 
-import {BooksService} from '../../services/books.service';
+import { BooksService } from '../../services/books.service';
+import { CartsService } from './../../services/carts.service';
 
 @Component({
   selector: 'app-catalog',
@@ -9,15 +11,36 @@ import {BooksService} from '../../services/books.service';
 })
 export class CatalogComponent implements OnInit {
 
-  books :any=[]
+  books: any = []
+  cart = {
+    isDeleted: 0,
+    books: []
+  }
 
-  constructor(private booksService: BooksService) {  
-        this.booksService.getAllBooks().subscribe(books => {
-                this.books = books
-        })
+  constructor(private booksService: BooksService, private cartsService: CartsService) {
+    this.booksService.getAllBooks().subscribe(books => {
+      this.books = books
+    })
   }
 
   ngOnInit() {
+  }
+
+  public getBookAdvancedSearch(book) {
+    this.booksService.getBookAdvancedSearch(book).subscribe(books => {
+      this.books = books
+    })
+  }
+  public addToCart(book) {
+    if (book.isDeleted === 0) // book exists
+    {
+      console.log('cart will be added')
+      this.cart.books.push(book._id);
+      this.cartsService.addCart(this.cart).subscribe(data => {
+        console.log('Success' + data)
+        //this.books.push(book);
+      })
+    }
   }
 
 }
