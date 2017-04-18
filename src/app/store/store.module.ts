@@ -9,6 +9,7 @@ import { ResearchComponent } from './research/research.component';
 import { FormsModule } from '@angular/forms';
 import { RapidSearchComponent } from './rapid-search/rapid-search.component';
 
+
 const ROUTES = [
     {
         path: 'header', 

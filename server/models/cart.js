@@ -18,6 +18,13 @@ const cartSchema = Schema({
     min: 0,
     max: 1
   },
+  TotalQty:{
+    type: Number,
+    default: 1
+  },
+  TotalPrice:{
+    type: Number,
+  },
   books: [{
     type: Number,
     ref: 'Book'

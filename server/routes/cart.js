@@ -6,7 +6,7 @@ const carts = require('../controllers/cart')
 // carts routes
 
 router.get('/carts', carts.getCarts)
-.put('/carts/:_id', carts.addBookToCart)
+.put('/carts', carts.addBookToCart)
 .get('/carts/:_id/cart', carts.getCartById)
 .get('/carts/date:', carts.getCartByDate)
 .put('/carts/:date/delete', carts.deleteCart)

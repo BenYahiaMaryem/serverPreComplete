@@ -51,7 +51,9 @@
     <button type="submit" (click)="save(f.value, f.valid)">Submit</button>
 </form>-->
 
-
+<div class="ui segment">
+  <div class="ui left internal rail">
+    <div class="ui segment">
 <form class="ui form" #f="ngForm" novalidate>
   <h4 class="ui dividing header">Research</h4>
   <div class="field">
@@ -103,6 +105,18 @@
   <button type="submit" (click)="c.getBookAdvancedSearch(book)">Submit</button>
    
   </div>
-   <app-catalog #c></app-catalog>
+   
 </form>
- 
+  
+    </div>
+      
+    </div>
+    <div class="ui right internal rail">
+    <div class="ui segment">
+<app-catalog #c></app-catalog>
+ </div>
+   </div>
+  </div>
+
+
+  
