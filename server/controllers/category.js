@@ -1,13 +1,12 @@
 'use strict'
 let category = require('../models/category')
-const bodyParser = require('body-parser')
 
 module.exports = {
 
         // fetch all categories
   getCategories: (req, res) => {
     var response = {}
-    category.find({})
+    category.find({isDeleted: 0})
         .populate('books')
         .exec((err, data) => {
         // Mongo command to fetch all data from collection.
