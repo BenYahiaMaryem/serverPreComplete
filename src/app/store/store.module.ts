@@ -8,7 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ResearchComponent } from './research/research.component';
 import { FormsModule } from '@angular/forms';
 import { RapidSearchComponent } from './rapid-search/rapid-search.component';
-
+import { CartComponent } from './cart/cart.component'
 
 const ROUTES = [
     {
@@ -32,6 +32,10 @@ const ROUTES = [
     {
         path: 'rapidSearch', 
         component: RapidSearchComponent
+    },
+    {
+         path: 'cart', 
+        component: CartComponent
     }
 
 
@@ -48,14 +52,16 @@ const ROUTES = [
     HeaderComponent,
     FooterComponent,
     ResearchComponent,
-    RapidSearchComponent
+    RapidSearchComponent,
+    CartComponent
   ],
   exports: [
     CatalogComponent,
     HeaderComponent,
     FooterComponent,
     ResearchComponent,
-    RapidSearchComponent
+    RapidSearchComponent,
+    CartComponent
   ],
   providers: [
       CatalogComponent

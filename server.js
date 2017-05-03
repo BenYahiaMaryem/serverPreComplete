@@ -32,8 +32,8 @@ app.use(session({
   secret: 'mySecret',
   resave: false, 
   saveUninitialized: false,
-  store: new MongoStore({mongooseConnection: mongoose.connection}),
-  cookie: {maxAge: 180 * 60 * 1000 }
+  store: new MongoStore({mongooseConnection: mongoose.connection})
+  //cookie: {maxAge: 180 * 60 * 1000 }
 }))
 
 // Point static path to dist

@@ -23,7 +23,8 @@ import { StoreComponent } from './store/store.component';
 
 import { StoreModule } from './store/store.module';
 
-import { AdminModule } from './admin/admin.module'
+import { AdminModule } from './admin/admin.module';
+
 
 //import { ClientsComponent } from './clients/clients.component';
 // Define the routes

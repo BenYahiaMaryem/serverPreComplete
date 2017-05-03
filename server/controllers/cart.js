@@ -103,7 +103,7 @@ module.exports = {
 // fetch a client by id
   getCartById: (req, res) => {
     var response = {}
-    cart.findOne({_id: req.params._id}, (err, cart) => {
+    cart.findOne({_id: req.session.cart}, (err, cart) => {
         // Mongo command to fetch all data from collection.
       if (err) {
         response = {'error': true, 'message': 'Error fetching data'}

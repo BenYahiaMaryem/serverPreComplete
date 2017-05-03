@@ -18,4 +18,8 @@ addCart(cart){
 }
 
 
+getCartById(){
+  return this.http.get('/api/cart')
+            .map(res => res.json());
+}
 }
