@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BooksService} from '../../services/books.service';
+
 @Component({
   selector: 'app-rapid-search',
   templateUrl: './rapid-search.component.html',

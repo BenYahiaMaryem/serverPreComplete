@@ -29,9 +29,9 @@ module.exports = {
               $or: [
                   {category: req.body.category},
                   {name: new RegExp(req.body.name)},
-                  {author: req.body.author},
-                  {edition: req.body.edition},
-                  {editionDate: req.body.editionDate},
+                  {author: new RegExp(req.body.author)},
+                  {edition: new RegExp(req.body.edition)},
+                  {editionDate: new RegExp(req.body.editionDate)},
                   {price: req.body.price}
               ]
             })
@@ -51,16 +51,16 @@ module.exports = {
     var response = {}
     let query = {isDeleted: 0}
     if (req.body.name) {
-      query.name = req.body.name
+      query.name = new RegExp(req.body.name)
     }
     if (req.body.author) {
-      query.author = req.body.author
+      query.author = new RegExp(req.body.author)
     }
     if (req.body.editonDate) {
       query.editonDate = req.body.editonDate
     }
     if (req.body.editon) {
-      query.editon = req.body.editon
+      query.editon = new RegExp(req.body.editon)
     }
     if (req.body.category) {
       query.category = +req.body.category
@@ -75,7 +75,6 @@ module.exports = {
         response = data
                     // console.log(req.body.attr)
       }
-
       res.json(response)
     }
 
