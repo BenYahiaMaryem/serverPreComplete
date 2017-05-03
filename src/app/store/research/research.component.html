@@ -51,6 +51,34 @@
     <button type="submit" (click)="save(f.value, f.valid)">Submit</button>
 </form>-->
 <br><br><br>
+
+<div class="ui grid">
+  <div class="three wide column">
+
+
+
+<form class="ui form" #f="ngForm" novalidate>
+  <h4 class="ui dividing header">Research</h4>
+  <div class="field">
+    <label>Book Name</label>
+    
+      <div class="field">
+        <input type="text" name="name" [(ngModel)]=book.name placeholder="Book Name">
+      </div>
+      
+    
+  </div>
+  
+  <div class="field">
+    <label>Author Name</label>
+    
+      <div class="field">
+        <input type="text" name="author" [(ngModel)]=book.author placeholder="Author Name">
+      </div>
+      
+    
+  </div>
+
 <div class="ui segment">
   <div class="ui left internal rail">
     <div class="ui segment">
@@ -58,6 +86,7 @@
         <h4 class="ui dividing header">Research</h4>
         <div class="field">
           <label>Book Name</label>
+
 
           <div class="field">
             <input type="text" name="name" [(ngModel)]=book.name placeholder="Book Name">
@@ -113,7 +142,26 @@
   </div>
 <div class="ui right internal rail">
    
+
+   
+</form>
+  
+    </div>
+      
+   
+
+   
+  <div class="eight wide column">
+<app-catalog #c></app-catalog>
+ </div>
+   </div>
+ 
+  
+
+  <div class="ui right internal rail">
+    <div class="ui segment">
       <app-catalog #c></app-catalog>
     
   </div>
 </div>
+
