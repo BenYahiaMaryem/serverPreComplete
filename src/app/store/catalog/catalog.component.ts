@@ -15,6 +15,7 @@ export class CatalogComponent implements OnInit {
   cart = {
   
     isDeleted: 0,
+    TotalQty: 0,
     books: []
   }
 
@@ -46,7 +47,8 @@ export class CatalogComponent implements OnInit {
       console.log('cart will be added')
     
     
-      this.cart.books.push(book._id);
+      this.cart.books.push(book._id)
+      this.cart.TotalQty += 1
 
       this.cartsService.addCart(this.cart).subscribe(data => {
         console.log('Success' + data)

@@ -99,11 +99,23 @@ module.exports = {
 
   }*/
   },
-
+//cart.find({})
+        //.populate('books')
+     //   .exec((err, data) => {
+        // Mongo command to fetch all data from collection.
+       /*   if (err) {
+            response = {'error': true, 'message': 'Error fetching data'}
+          } else {
+            response = data
+          }
+          res.json(response)
+        })*/
 // fetch a client by id
   getCartById: (req, res) => {
     var response = {}
-    cart.findOne({_id: req.session.cart}, (err, cart) => {
+    cart.findOne({_id: req.session.cart})
+    .populate('books')
+    .exec( (err, cart) => {
         // Mongo command to fetch all data from collection.
       if (err) {
         response = {'error': true, 'message': 'Error fetching data'}
@@ -116,12 +128,12 @@ module.exports = {
 
   updateCart: (req, res) => {
     var response = {}
-    cart.findOneAndUpdate({ _id: 0}, req.body, function (err, cart) {
+    cart.findOneAndUpdate({ _id: req.session.cart}, req.body, function (err, cart) {
       if (err) return res.status(400).json(err)
 
       else {
         response = cart
-        req.session.cart=cart
+       
       }
       res.json(response)
     })
@@ -137,6 +149,12 @@ module.exports = {
       }
       res.json(response)
     })
+  },
+
+  removeBookFromCart: (req, res) => {
+
   }
+
+
 
 }

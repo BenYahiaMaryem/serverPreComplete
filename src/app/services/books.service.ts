@@ -41,6 +41,13 @@ return this.http.get('/api/books/'+_id)
 
 }
 
+getManyBooks(ids){
+
+return this.http.get('/api/books/'+ids+'/many')
+            .map(res => res.json());
+
+}
+
 addBook(book){
 var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -52,6 +59,7 @@ removeBook(book){
   headers.append('Content-Type', 'application/json');
   console.log(book);
 return this.http.put("/api/books/"+ book._id+"/delete", JSON.stringify(book), { headers: headers }) .map(response => response.json());
+
 
 }
 

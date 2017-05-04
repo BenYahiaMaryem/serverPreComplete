@@ -11,6 +11,15 @@ import { RapidSearchComponent } from './rapid-search/rapid-search.component';
 import { CartComponent } from './cart/cart.component'
 
 const ROUTES = [
+   /*  {
+        path: '',
+        redirectTo: 'research',
+        pathMatch: 'full'
+    },*/
+    {
+        path: '', 
+        component:ResearchComponent
+    },
     {
         path: 'header', 
         component: HeaderComponent

@@ -22,4 +22,12 @@ getCartById(){
   return this.http.get('/api/cart')
             .map(res => res.json());
 }
+
+//update books of cart 
+removeBookFromCart(cart){
+  var headers = new Headers();
+  headers.append('Content-Type', 'application/json');
+        return this.http.put("/api/carts/update", JSON.stringify(cart), { headers: headers }) .map(response => response.json());
+
+}
 }

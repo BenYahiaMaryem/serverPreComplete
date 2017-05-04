@@ -160,6 +160,20 @@ module.exports = {
       }
       res.json(response)
     })
-  }
+  },
 
+getMany:(req,res)=> {
+    var response = {}
+    let tmp = req.params.ids
+    let fields=tmp.split(',')
+    
+    Book.find({ _id: {$in:fields}},  function (err, book) {
+      if (err) return res.status(400).json(err)
+
+      else {
+        response = book
+      }
+      res.json(response)
+    })
+  }
 }

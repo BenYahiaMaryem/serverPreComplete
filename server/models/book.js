@@ -24,7 +24,19 @@ const bookSchema = Schema({
     type: String,
     required: false
   },
-  price: {
+  recentPrice: {
+    type: Number,
+    required: false
+  },
+  oldPrice: {
+    type: Number,
+    required: false
+  },
+  availableBooks:{
+    type: Number,
+    required: false
+  },
+  inMarket :{ // stock
     type: Number,
     required: false
   },

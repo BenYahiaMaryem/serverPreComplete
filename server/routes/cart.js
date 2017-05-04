@@ -8,8 +8,8 @@ const carts = require('../controllers/cart')
 router.get('/carts', carts.getCarts)
 .put('/carts', carts.addBookToCart)
 .get('/cart', carts.getCartById)
-.get('/carts/date:', carts.getCartByDate)
+.get('/carts/:date', carts.getCartByDate)
 .put('/carts/:date/delete', carts.deleteCart)
-.put('/carts/:date/update', carts.updateCart)
+.put('/carts/update', carts.updateCart)
 // export router
 module.exports = router
