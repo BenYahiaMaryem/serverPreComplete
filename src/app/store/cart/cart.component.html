@@ -10,21 +10,23 @@
             <th>Quantity</th>
             <th>Price</th>
             <th>Total</th>
-            <th></th>
+            <th>Total Price</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let book of books; let i = index">
+          <tr *ngFor="let book of books; let i = index; trackBy: trackBooks">
             <td class="collapsing">
               <div (click)="test(i)">
                 <i class="trash outline icon"></i>
               </div>
             </td>
             <td>{{book.name}}</td>
-            <td><input [value]="book.TotalQty" type="number"></td>
-            <td>{{book.oldPrice}}</td>
-            <td>{{ book.oldPrice * book.TotalQty |number: '1.0-2'}}</td>
+            <td><input [value]="book.TotalQty" type="number" [(ngModel)]="book.TotalQty"></td>
+            <td><input [value]="book.oldPrice" readonly [(ngModel)]="book.oldPrice"></td>
+            <td>{{book.TotalQty * book.oldPrice}}</td>
+            
+          
           </tr>
         </tbody>
         <tfoot class="full-width">
@@ -34,12 +36,13 @@
               <div class="ui right floated small primary labeled icon button" (click)="test()">
                 <i class="user icon"></i> Add User
               </div>
-              <div class="ui small  button">
-                Approve
+              <div (click)="totalQ()" class="ui small  button">
+                Total Price
               </div>
-              <div class="ui small  disabled button">
-                Approve All
-              </div>
+              <p></p>
+            
+                
+              
             </th>
           </tr>
         </tfoot>

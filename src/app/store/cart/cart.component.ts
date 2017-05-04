@@ -1,5 +1,5 @@
 import { BooksService } from './../../services/books.service';
-import { Component, OnInit,OnChanges } from '@angular/core';
+import { Component, OnInit,OnChanges,Input } from '@angular/core';
 import { CartsService } from './../../services/carts.service';
 @Component({
   selector: 'app-cart',
@@ -12,7 +12,11 @@ export class CartComponent implements OnInit,OnChanges {
   
     isDeleted: 0,
     books: []
-  }
+ }
+
+ total:number=0;
+  /*@Input() TotalQty: number;
+    @Input() oldPrice: number;*/
   constructor(private cartsService: CartsService, private booksService: BooksService) { }
 
   ngOnInit() {
@@ -38,6 +42,7 @@ export class CartComponent implements OnInit,OnChanges {
      this.cartsService.getCartById().subscribe(data => {
         this.books=data.books;
       })
+      console.log(this.total)
   }
   test(id): void {
     console.log(id)
@@ -52,6 +57,21 @@ export class CartComponent implements OnInit,OnChanges {
     this.cartsService.removeBookFromCart(this.cart).subscribe(data => {
         console.log(data)
       })
+     
   }
 
+totalQ():void{
+
+console.log(this.total)
+}
+
+
+  trackBooks(index, book) {
+      let t=book.oldPrice*book.TotalQty
+        t=book.oldPrice*book.TotalQty+t
+        this.total=book.oldPrice*book.TotalQty+this.total
+          console.log(book.oldPrice*book.TotalQty+"total "+this.total);
+        return book ? book.TotalQty : undefined;
+
+    }
 }
