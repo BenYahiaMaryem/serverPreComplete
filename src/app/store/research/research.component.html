@@ -112,6 +112,15 @@
                   </option>
                 </select>
           </div>
+          <div class="field">
+
+            <label for="price-min">Price Min:</label>
+            <input type="number" name="priceMin" id="price-min" min="10" max="500" [(ngModel)]="book.priceMin">
+
+            <label for="price-max">Price Max:</label>
+            <input type="number" name="priceMax" id="price-max" min="10" max="500" [(ngModel)]="book.priceMax">
+          </div>
+
           <button class="ui button" type="submit" (click)="c.getBookAdvancedSearch(book)">Submit</button>
         </form>
       </div>

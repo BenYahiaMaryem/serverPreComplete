@@ -19,7 +19,8 @@ export class ResearchComponent implements OnInit {
     author: 'auhtor name',
     editionDate: 2000,
     edition: '',
-    /*price : null ,*/
+    priceMin : 0 ,
+    priceMax:0,
     category: ''
   }
   //catalog:CatalogComponent
@@ -40,12 +41,17 @@ export class ResearchComponent implements OnInit {
       author: null,
       editionDate: null,
       edition: null,
-      //price: this.book.price,
+      priceMin : 10,
+      priceMax: 500,
       categories: this.categories,
       category: null
 
 
     }
+  }
+
+  setMin(event){
+    console.log("event"+event)
   }
 
 /*  public save(isValid: boolean, f: any, book: any) {

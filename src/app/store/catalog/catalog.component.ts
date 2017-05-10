@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import {BooksService} from '../../services/books.service';
 import { CartsService } from './../../services/carts.service';
 
@@ -11,7 +10,6 @@ import { CartsService } from './../../services/carts.service';
 export class CatalogComponent implements OnInit {
 
  books: any = []
-
   cart = {
   
     isDeleted: 0,
@@ -36,9 +34,11 @@ export class CatalogComponent implements OnInit {
   }
 
   public getBookRapidSearch(book) {
+  
+    console.log("from catalog"+book)
     this.booksService.getBookRapidSearch(book).subscribe(books => {
       this.books = books
-      console.log("from catalog")
+      
     })
   }
   public addToCart(book) {

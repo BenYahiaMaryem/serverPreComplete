@@ -32,7 +32,7 @@ module.exports = {
                   {author: new RegExp(req.body.author)},
                   {edition: new RegExp(req.body.edition)},
                   {editionDate: new RegExp(req.body.editionDate)},
-                  {price: req.body.price}
+                  { oldPrice: { $gt: req.body.priceMin, $lt: req.body.priceMax } }
               ]
             })
             .populate('category')
@@ -49,7 +49,7 @@ module.exports = {
 
   FindBookByNameOrCategoryOrAuthorOrPriceOrEditionOrEditionDate: (req, res) => {
     var response = {}
-    let query = {isDeleted: 0}
+    let query = {isDeleted: 0, oldPrice: { $gt: req.body.priceMin, $lt: req.body.priceMax } }
     if (req.body.name) {
       query.name = new RegExp(req.body.name)
     }
@@ -65,6 +65,7 @@ module.exports = {
     if (req.body.category) {
       query.category = +req.body.category
     }
+    
     console.log(query)
 
     Book.find(query, function (err, data) {

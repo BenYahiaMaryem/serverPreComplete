@@ -1,18 +1,21 @@
 import { BooksService } from './../../services/books.service';
-import { Component, OnInit,OnChanges,Input } from '@angular/core';
+import { Component, OnInit,OnChanges,Input,DoCheck } from '@angular/core';
 import { CartsService } from './../../services/carts.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html'
 })
-export class CartComponent implements OnInit,OnChanges {
+export class CartComponent implements OnInit,OnChanges,DoCheck {
   books: any = []
   data: any = []
  cart = {
   
     isDeleted: 0,
-    books: []
+    books: [],
+    TotalPrice:this.total,
+    TotalQty:0
  }
+
 
  total:number=0;
   /*@Input() TotalQty: number;
@@ -42,17 +45,19 @@ export class CartComponent implements OnInit,OnChanges {
      this.cartsService.getCartById().subscribe(data => {
         this.books=data.books;
       })
-      console.log(this.total)
+    
+     // console.log("total"+this.total)
   }
-  test(id): void {
+
+  ngDoCheck(){
+    
+      console.log("total"+this.total)
+  }
+
+  removeBookFromCart(id): void {
     console.log(id)
     this.books.splice(id, 1)
-    /*this.booksService.getBookById(id).subscribe(data => {
-      //this.books.
-      console.log(`${this.books}`)
-      //.indexOf(data)
-    
-    })*/
+   
     this.cart.books=this.books
     this.cartsService.removeBookFromCart(this.cart).subscribe(data => {
         console.log(data)
@@ -61,17 +66,24 @@ export class CartComponent implements OnInit,OnChanges {
   }
 
 totalQ():void{
-
-console.log(this.total)
+this.total = 0;
+    for(let element of this.books) {
+      this.total += element.oldPrice * element.TotalQty;
+}
 }
 
 
   trackBooks(index, book) {
       let t=book.oldPrice*book.TotalQty
         t=book.oldPrice*book.TotalQty+t
-        this.total=book.oldPrice*book.TotalQty+this.total
-          console.log(book.oldPrice*book.TotalQty+"total "+this.total);
+        this.total=book.oldPrice*book.TotalQty
+         // console.log(book.oldPrice*book.TotalQty+"total "+this.total);
         return book ? book.TotalQty : undefined;
 
+    }
+
+    passCommand():void{
+      
+      console.log("test command")
     }
 }
